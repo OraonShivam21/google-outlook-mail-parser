@@ -106,7 +106,12 @@ async function analyzeEmailContent(emailContent: string): Promise<string> {
       "https://api.openai.com/v1/completions",
       {
         model: "text-davinci-003",
-        prompt: emailContent,
+        prompt: `[Act as an email analyzer]
+        Please help me analyzing this email body and form a proper reply for the same along with categorizing them into "interested", "not interested", and "more information" accordingly. The email body is as given below:
+        
+        ${emailContent}
+        
+        Please analyze and provide the reply and category.`,
         max_tokens: 50,
       },
       {
